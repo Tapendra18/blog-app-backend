@@ -12,8 +12,9 @@ dotenv.config();
 const userRoutes = require("./api/routes/userRoutes");
 const blogRoutes = require("./api/routes/blogRoutes");
 const commentRoutes = require("./api/routes/commentRoutes");
+const Url = process.env.DATABASE;
 //connect database
-mongoose.connect("mongodb://localhost:27017/blog");
+mongoose.connect(Url, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //rest object
 const app = express();
@@ -29,7 +30,7 @@ app.use("/api/v1/blog", blogRoutes);
 app.use("/api/v1/comment", commentRoutes);
 
 //port
-const PORT = process.env.PORT || 8000;
+const PORT = process.env.PORT || 8030;
 
 //listen
 app.listen(PORT, () => {
